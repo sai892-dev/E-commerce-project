@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/components/CartContext";
 import { useRouter } from "next/navigation";
 
@@ -15,8 +15,19 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  if (cart.length === 0) {
-    router.push("/cart");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && cart.length === 0) {
+      router.push("/cart");
+    }
+  }, [cart, router, mounted]);
+
+  if (!mounted || cart.length === 0) {
     return null;
   }
 
