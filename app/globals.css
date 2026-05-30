@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg-color: #f1f3f6; /* Flipkart style background */
+  --text-primary: #212121;
+  --text-secondary: #878787;
+  --accent-color: #2874f0; /* Flipkart blue */
+  --accent-hover: #1e5bb8;
+  --header-bg: #2874f0;
+  --header-text: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --radius: 4px; /* sharper corners like e-commerce sites */
+  --transition: all 0.2s ease-in-out;
+  --shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+
+/* Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: #fb641b; /* Flipkart orange buy button */
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background-color: #d14d10;
+}
+
+.btn-secondary {
+  background-color: #ff9f00; /* Flipkart add to cart button */
+  color: #ffffff !important;
+}
+
+.btn-secondary:hover {
+  background-color: #cc8000;
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  border: 1px solid #d7d7d7;
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Forms */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input {
+  padding: 0.75rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background-color: #ffffff;
+  color: var(--text-primary);
+  font-family: 'Roboto', sans-serif;
+  transition: var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  border: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Header/Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 0.75rem 0;
+  box-shadow: var(--shadow);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #ffffff !important;
+  text-transform: lowercase;
+}
+
+.nav-logo::first-letter {
+  text-transform: uppercase;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  max-width: 600px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2px 0 0 2px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.search-btn {
+  background-color: #ffffff;
+  color: var(--accent-color);
+  border: none;
+  padding: 0 1rem;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.search-btn:hover {
+  background-color: #f1f3f6;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #f1f3f6;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Specific product card */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 2px;
+  border: 1px solid #f0f0f0;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 100%;
+}
+
+.product-card:hover {
+  box-shadow: 0 3px 16px 0 rgba(0,0,0,0.11);
+  transform: translateY(-2px);
+}
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #212121;
+}
+
+.hero-section {
+  background-color: #fff;
+  padding: 3rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
