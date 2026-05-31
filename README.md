@@ -1,5 +1,7 @@
 # LuxeStore - Advanced E-Commerce Platform
 
+🚀 **Live Demo:** [View the Live Project Here](https://vercel.com/sai892-devs-projects/e-commerce-project) *(Note: To get the exact Vercel link, open this dashboard and click on your domain)*
+
 Welcome to **LuxeStore**, a massive, high-performance e-commerce platform built with modern web technologies. This project is designed to emulate the scale, speed, and premium feel of industry giants like Flipkart and Amazon, while introducing highly innovative, first-of-their-kind features.
 
 ## 🚀 Key Features
