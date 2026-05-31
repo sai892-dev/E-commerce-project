@@ -60,7 +60,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || "fallback_secret_for_vercel_deployment_12345",
 };
 
 const handler = NextAuth(authOptions);
