@@ -5,25 +5,54 @@ import Product from "@/models/Product";
 export const revalidate = 0; // Disable caching so it always shows latest products
 
 export default async function Home() {
-  await connectToDatabase();
-  
-  // Since we now have 10,000 products, fetching all of them will crash the app.
-  // We will fetch a limited number of items per category query.
-  
-  const fetchCategory = async (keyword) => {
-    const products = await Product.find({ name: { $regex: keyword, $options: "i" } }).limit(10).lean();
-    return products.map(p => ({
-      ...p,
-      _id: p._id.toString(),
-      createdAt: p.createdAt?.toISOString(),
-      updatedAt: p.updatedAt?.toISOString()
-    }));
-  };
+  let electronics = [];
+  let fashion = [];
+  let ethnic = [];
+  let appliances = [];
 
-  const electronics = await fetchCategory("Laptop|TV|Smartphone|Headphone");
-  const fashion = await fetchCategory("Sneaker|Watch|Jeans|T-Shirt");
-  const ethnic = await fetchCategory("Saree|Kurta|Lehenga");
-  const appliances = await fetchCategory("Espresso|Purifier|Vacuum|Mixer");
+  try {
+    await connectToDatabase();
+    
+    const fetchCategory = async (keyword) => {
+      const products = await Product.find({ name: { $regex: keyword, $options: "i" } }).limit(10).lean();
+      return products.map(p => ({
+        ...p,
+        _id: p._id.toString(),
+        createdAt: p.createdAt?.toISOString(),
+        updatedAt: p.updatedAt?.toISOString()
+      }));
+    };
+
+    electronics = await fetchCategory("Laptop|TV|Smartphone|Headphone");
+    fashion = await fetchCategory("Sneaker|Watch|Jeans|T-Shirt");
+    ethnic = await fetchCategory("Saree|Kurta|Lehenga");
+    appliances = await fetchCategory("Espresso|Purifier|Vacuum|Mixer");
+    
+  } catch (err) {
+    console.error("Database connection failed on Vercel. Serving static fallback data.", err);
+    // Provide beautiful static fallback data so the portfolio NEVER crashes
+    const fallbackProducts = [
+      { _id: "1", name: "Premium Smartphone - Midnight Blue", price: 45000, image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+      { _id: "2", name: "Smart TV 4K - Titanium Silver", price: 65000, image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+      { _id: "3", name: "Noise Cancelling Headphones", price: 12000, image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+    ];
+    const fashionFallback = [
+      { _id: "4", name: "Classic Sneakers - Alpine White", price: 4500, image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+      { _id: "5", name: "Designer Watch - Rose Gold", price: 8900, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+    ];
+    const ethnicFallback = [
+      { _id: "6", name: "Handwoven Silk Saree", price: 15000, image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+      { _id: "7", name: "Designer Lehenga - Crimson Red", price: 25000, image: "https://images.unsplash.com/photo-1615886753866-79396abc446e?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+    ];
+    const appliancesFallback = [
+      { _id: "8", name: "Pro Espresso Machine", price: 32000, image: "https://images.unsplash.com/photo-1556910103-1c02745a872f?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+      { _id: "9", name: "Smart Air Purifier", price: 14000, image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500", amazonLink: "https://amazon.in", flipkartLink: "https://flipkart.com" },
+    ];
+    electronics = fallbackProducts;
+    fashion = fashionFallback;
+    ethnic = ethnicFallback;
+    appliances = appliancesFallback;
+  }
 
   const renderProductRow = (title, categoryProducts, categoryPath) => (
     <section style={{ marginBottom: "3rem", padding: "1rem", backgroundColor: "#fff", boxShadow: "0 1px 2px rgba(0,0,0,0.1)" }}>

@@ -103,7 +103,7 @@ export default function ProductDetail({ params }) {
             )}
           </div>
           
-          <div className="flex gap-4" style={{ marginBottom: "2rem" }}>
+          <div className="flex flex-col sm:flex-row gap-4" style={{ marginBottom: "2rem" }}>
             <button onClick={handleAddToCart} className="btn btn-secondary" style={{ padding: "1rem 2rem", fontSize: "1.1rem", flex: 1 }}>
               {negotiatedPrice ? "ADD TO CART (DEAL PRICE)" : "ADD TO CART"}
             </button>
@@ -111,6 +111,20 @@ export default function ProductDetail({ params }) {
               <button onClick={() => setIsBargaining(!isBargaining)} className="btn btn-primary" style={{ padding: "1rem 2rem", fontSize: "1.1rem", flex: 1, backgroundColor: "#6366f1" }}>
                 AI BARGAIN 🤖
               </button>
+            )}
+          </div>
+
+          {/* External Links */}
+          <div className="flex flex-col sm:flex-row gap-4" style={{ marginBottom: "2rem" }}>
+            {product.amazonLink && (
+              <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#ff9900", color: "#fff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
+                Buy on Amazon
+              </a>
+            )}
+            {product.flipkartLink && (
+              <a href={product.flipkartLink} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#0456c8", color: "#fff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
+                Buy on Flipkart
+              </a>
             )}
           </div>
 

@@ -279,3 +279,63 @@ p {
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
 }
+
+/* --- MOBILE VIEW ENHANCEMENTS --- */
+@media (max-width: 768px) {
+  body {
+    font-size: 1.1rem; /* Base text bigger */
+  }
+  
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .btn {
+    padding: 1rem 1.5rem; /* Taller, chunkier buttons */
+    font-size: 1.1rem;
+    width: 100%; /* Full width buttons on mobile */
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-card {
+    padding: 1.5rem;
+  }
+  
+  .product-card h3 {
+    font-size: 1.3rem; /* Bigger product titles */
+  }
+  
+  .product-price {
+    font-size: 1.5rem; /* More visible price */
+    font-weight: 700;
+  }
+  
+  .nav-content {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.8rem;
+  }
+  
+  .search-bar {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .search-input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .nav-link {
+    font-size: 1.1rem;
+  }
+}
