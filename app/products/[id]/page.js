@@ -116,16 +116,12 @@ export default function ProductDetail({ params }) {
 
           {/* External Links */}
           <div className="flex flex-col sm:flex-row gap-4" style={{ marginBottom: "2rem" }}>
-            {product.amazonLink && (
-              <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#ff9900", color: "#fff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
-                Buy on Amazon
-              </a>
-            )}
-            {product.flipkartLink && (
-              <a href={product.flipkartLink} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#0456c8", color: "#fff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
-                Buy on Flipkart
-              </a>
-            )}
+            <a href={product.amazonLink || `https://www.amazon.in/s?k=${encodeURIComponent(product.name)}`} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#ff9900", color: "#ffffff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
+              Buy on Amazon
+            </a>
+            <a href={product.flipkartLink || `https://www.flipkart.com/search?q=${encodeURIComponent(product.name)}`} target="_blank" rel="noopener noreferrer" className="btn" style={{ flex: 1, backgroundColor: "#0456c8", color: "#ffffff", padding: "1rem", textAlign: "center", textDecoration: "none", borderRadius: "4px", fontWeight: "bold" }}>
+              Buy on Flipkart
+            </a>
           </div>
 
           {/* Bargaining UI */}
